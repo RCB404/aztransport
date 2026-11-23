@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#183f37" />
+    <title>Austria · Localități și rute tur-retur</title>
+    <meta
+      name="description"
+      content="Între vestul României și Austria. Verifică localitățile, alege turul sau returul și pregătește cererea pentru transport la adresă."
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <script defer src="../assets/js/app.js"></script>
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="../index.html"
+        ><b aria-hidden="true">⇄</b> Transport persoane</a
+      >
+      <nav aria-label="Meniu principal">
+        <a href="../index.html">Acasă</a><a href="romania.html">România</a
+        ><a href="austria.html" aria-current="page">Austria</a
+        ><a href="germania.html">Germania</a
+        ><a href="../contact.html">Contact</a>
+      </nav>
+      <a class="navcta" href="#cerere">Cere o ofertă</a>
+    </header>
+    <main data-country="austria">
+      <section class="section route-intro">
+        <a href="../index.html#ruta">Toate rutele</a>
+        <h1>Austria</h1>
+        <p>
+          Poți coborî pe traseul dintre Viena și Salzburg, inclusiv în zonele
+          Sankt Pölten și Linz. Dacă locuiești într-o comună de lângă oraș,
+          trece în cerere numele comunei și codul poștal al adresei.
+        </p>
+        <nav aria-label="Sensul călătoriei" class="directions">
+          <a
+            class="route-link"
+            data-dir="tur"
+            href="?sens=tur"
+            aria-current="false"
+            >Tur · din România</a
+          ><a
+            class="route-link"
+            data-dir="retur"
+            href="?sens=retur"
+            aria-current="false"
+            >Retur · spre România</a
+          >
+        </nav>
+      </section>
+      <section class="section route-body">
+        <h2 id="area-title">Localități din Austria</h2>
+        <details>
+          <summary>Viena</summary>
+          <p>
+            Nickelsdorf, Parndorf, Bruck an der Leitha, Fischamend, Schwechat,
+            Viena, Mödling, Vösendorf, Wiener Neudorf.
+          </p>
+        </details>
+        <details>
+          <summary>Sankt Pölten</summary>
+          <p>
+            Sankt Pölten, Herzogenburg, Melk, Loosdorf, Pöchlarn, Ybbs an der
+            Donau, Amstetten, Haag.
+          </p>
+        </details>
+        <details>
+          <summary>Linz</summary>
+          <p>
+            Enns, Linz, Ansfelden, Traun, Leonding, Marchtrenk, Wels,
+            Vöcklabruck, Mondsee.
+          </p>
+        </details>
+        <details>
+          <summary>Salzburg</summary>
+          <p>
+            Eugendorf, Seekirchen am Wallersee, Salzburg, Wals-Siezenheim,
+            Hallein.
+          </p>
+        </details>
+        <p>
+          Pentru alte adrese din apropiere, include localitatea sau codul poștal
+          în cerere.
+        </p>
+        <a class="btn" href="#cerere">Verifică o plecare</a>
+      </section>
+      <section class="section story">
+        <h2>Te întorci acasă?</h2>
+        <div>
+          <p>
+            Dacă pleci din Viena, Linz sau Salzburg sau din apropiere, indică
+            localitatea exactă și codul poștal. Pentru sosirea în România, trece
+            localitatea în care vrei să ajungi, chiar dacă este un sat.
+          </p>
+          <a href="?sens=retur#cerere">Pregătește cererea de retur</a> ·
+          <a href="romania.html?sens=retur">Vezi zonele de sosire în România</a>
+        </div>
+      </section>
+      <section class="section booking" id="cerere">
+        <div>
+          <p class="kicker">TUR ȘI RETUR</p>
+          <h2>Când vrei <br />să pleci?</h2>
+          <p>
+            Alege sensul și completează detaliile pentru o solicitare de
+            transport.
+          </p>
+        </div>
+        <form>
+          <label
+            >Sensul călătoriei<select id="sens">
+              <option value="România → Austria">România → Austria</option>
+              <option value="Austria → România">Austria → România</option>
+            </select></label
+          >
+          <div class="pair">
+            <label
+              >De unde pleci?<input
+                id="start"
+                required
+                maxlength="120"
+                placeholder="Localitate sau cod poștal" /></label
+            ><label
+              >Unde ajungi?<input
+                id="end"
+                required
+                maxlength="120"
+                placeholder="Localitate sau cod poștal"
+            /></label>
+          </div>
+          <div class="pair">
+            <label>Data dorită<input id="date" type="date" required /></label
+            ><label
+              >Persoane<select id="people">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+              </select></label
+            >
+          </div>
+          <button class="btn">Pregătește cererea</button>
+          <p class="note">
+            Versiune de prezentare. Poți pregăti și copia mesajul. Dispeceratul
+            nu primește încă solicitări.
+            <a class="privacy-link" href="../confidentialitate.html"
+              >Despre datele din formular</a
+            >.
+          </p>
+          <div id="result" hidden>
+            <label
+              >Mesajul tău<textarea
+                id="message"
+                rows="5"
+                readonly
+              ></textarea></label
+            ><button type="button" id="copy">Copiază mesajul</button>
+            <span id="feedback" role="status"></span>
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <strong>Transport de persoane la adresă</strong>
+      <nav aria-label="Meniu de subsol">
+        <a href="../index.html">Acasă</a><a href="romania.html">România</a
+        ><a href="austria.html" aria-current="page">Austria</a
+        ><a href="germania.html">Germania</a>
+      </nav>
+      <div class="policy-links">
+        <a href="../contact.html">Contact</a
+        ><a href="../confidentialitate.html">Confidențialitate</a
+        ><a href="../politica-cookie.html">Cookie-uri</a>
+      </div>
+    </footer>
+  </body>
+</html>
