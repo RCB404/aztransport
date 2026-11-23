@@ -61,3 +61,22 @@ html { scroll-padding-bottom:80px; }
 .actions a {background:#092a50;color:white;font-weight:650;}.actions a:last-child {background:#176c40;}
 .logo img{width:76px;height:auto;display:block}.logo span{font-size:1.2rem;letter-spacing:-.035em}.routes-menu{position:relative;border:0}.routes-menu summary{display:flex;align-items:center;gap:8px;min-height:44px;padding:0;font:inherit;list-style:none}.routes-menu summary::-webkit-details-marker{display:none}.routes-menu summary:after{content:"";width:7px;height:7px;border-right:2px solid;border-bottom:2px solid;transform:rotate(45deg);margin-top:-4px}.routes-panel{position:absolute;top:100%;left:0;z-index:12;min-width:220px;padding:7px;background:white;border:1px solid #ccd9e7;border-radius:10px;box-shadow:0 12px 28px #08274726}.routes-panel a{display:flex!important;padding:5px 12px}.routes-panel a:hover{background:#fff0df}.routes-panel hr{border:0;border-top:1px solid #ccd9e7;margin:4px 0}.county-row{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid #c6d5e4;padding:8px 0}.county-row>button{font-weight:750;text-align:left;min-width:9rem;min-height:44px}.county-row details{border:0;flex:1}.county-row summary{font-size:1rem;padding:10px 0}.pickup-cta{background:#edf3fa;border-left:5px solid #ed6c0c;padding:clamp(18px,3vw,32px);border-radius:8px;color:#092a50}.pickup-cta h3{margin-top:0;font-size:1.45rem}.pickup-wrap{padding-block:28px}.quick-contact svg,.actions svg{width:23px;height:23px;flex:none}.quick-contact a,.actions a{display:inline-flex;align-items:center;gap:9px}.quick-contact [data-channel="call"],.actions [data-channel="call"]{background:#092d56;color:white}.quick-contact [data-channel="whatsapp"],.actions [data-channel="whatsapp"]{background:#087e49;color:white}.quick-contact a:hover{filter:brightness(1.12)}
 @media(max-width:600px){.logo img{width:56px}.logo span{font-size:1rem}.county-row{flex-wrap:wrap;gap:0 12px}.routes-panel{left:-40px}}
+
+.menu-toggle { display:none; }
+@media (max-width:960px) {
+  header { display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:0 8px; min-height:64px; padding:8px clamp(10px,3vw,24px); }
+  header .logo { grid-area:1/1; gap:5px; }
+  header .logo img { width:clamp(36px,10vw,54px); }
+  header .logo span { font-size:1rem; }
+  header .navcta { grid-area:1/2; display:inline-flex; align-items:center; min-height:44px; padding:6px 10px; font-size:.875rem; white-space:nowrap; }
+  header.menu-ready .menu-toggle { grid-area:1/3; display:grid; place-content:center; gap:4px; width:44px; height:44px; border:1px solid #cfdae4; border-radius:9px; background:white; color:#092a50; cursor:pointer; }
+  .menu-toggle span { display:block; width:20px; height:2px; background:currentColor; border-radius:2px; }
+  .menu-toggle[aria-expanded="true"] span:first-child { transform:translateY(6px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity:0; }
+  .menu-toggle[aria-expanded="true"] span:last-child { transform:translateY(-6px) rotate(-45deg); }
+  header #main-nav { grid-area:2/1/3/-1; display:grid; gap:0; justify-content:stretch; margin:8px 0 0; padding:4px 0; border-top:1px solid #d6e0ea; }
+  header.menu-ready .menu-toggle[aria-expanded="false"] + nav { display:none !important; }
+  #main-nav > a, #main-nav summary { display:flex; min-height:46px; padding:0 12px; }
+  #main-nav summary { justify-content:space-between; }
+  #main-nav .routes-panel { position:static; min-width:0; padding:2px 8px; margin:0 0 4px 12px; border:0; border-left:3px solid #ffab58; border-radius:0; box-shadow:none; background:#f4f7fa; }
+}
