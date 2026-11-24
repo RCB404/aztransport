@@ -5,58 +5,32 @@ for (const link of document.querySelectorAll("[data-channel]")) {
   const channel = link.dataset.channel;
   const number = dispatchNumbers[channel].replace(/[\s()-]/g, "");
   if (!/^\+[1-9]\d{6,14}$/.test(number)) continue;
-  link.href =
-    channel === "call" ? "tel:" + number : "https://wa.me/" + number.slice(1);
+  link.href = channel === "call" ? "tel:" + number : "https://wa.me/" + number.slice(1);
 }
 
 const cityDialog = document.querySelector("#city-contact");
 if (cityDialog) {
-  document.addEventListener("click", (event) => {
+  document.addEventListener("click", event => {
     const city = event.target.closest("[data-town]");
     if (!city) return;
     const town = city.dataset.town;
     const nation = city.dataset.nation;
-    const selected = document.getElementById("sens")?.value;
-    const returning = selected
-      ? selected.endsWith("→ România")
-      : nation !== "România";
-    const route =
-      nation === "România"
-        ? selected || "România ↔ Austria / Germania"
-        : returning
-          ? nation + " → România"
-          : "România → " + nation;
+    const selected = document.getElementById("sens").value;
+    const returning = selected.endsWith("→ România");
+    const route = nation === "România" ? selected : (returning ? nation + " → România" : "România → " + nation);
     const departure = route.startsWith(nation + " →");
-    const detail =
-      !selected && nation === "România"
-        ? "Localitate în România: " + town
-        : (departure ? "Plecare din " : "Sosire în ") + town;
+    const detail = (departure ? "Plecare din " : "Sosire în ") + town;
     document.getElementById("city-title").textContent = town;
-    document.getElementById("city-context").textContent =
-      route + " · " + detail;
+    document.getElementById("city-context").textContent = route + " · " + detail;
     let available = 0;
     for (const link of cityDialog.querySelectorAll("[data-channel]")) {
       const channel = link.dataset.channel;
       const number = dispatchNumbers[channel].replace(/[\s()-]/g, "");
       if (/^\+[1-9]\d{6,14}$/.test(number)) {
         available++;
-        link.href =
-          channel === "call"
-            ? "tel:" + number
-            : "https://wa.me/" +
-              number.slice(1) +
-              "?text=" +
-              encodeURIComponent(
-                "Bună ziua! Doresc o ofertă pentru " +
-                  route +
-                  ". " +
-                  detail +
-                  ".",
-              );
+        link.href = channel === "call" ? "tel:" + number : "https://wa.me/" + number.slice(1) + "?text=" + encodeURIComponent("Bună ziua! Doresc o ofertă pentru " + route + ". " + detail + ".");
       } else {
-        link.href = document.querySelector(
-          ".quick-contact [data-channel='" + channel + "']",
-        ).href;
+        link.href = document.querySelector(".quick-contact [data-channel='" + channel + "']").href;
       }
     }
     document.getElementById("city-note").hidden = available === 2;
@@ -66,10 +40,10 @@ if (cityDialog) {
 
 const routeMenu = document.querySelector(".routes-menu");
 if (routeMenu) {
-  document.addEventListener("click", (event) => {
+  document.addEventListener("click", event => {
     if (!routeMenu.contains(event.target)) routeMenu.open = false;
   });
-  routeMenu.addEventListener("keydown", (event) => {
+  routeMenu.addEventListener("keydown", event => {
     if (event.key === "Escape") {
       routeMenu.open = false;
       routeMenu.querySelector("summary").focus();
@@ -89,22 +63,26 @@ if (menuToggle) {
     if (isOpen()) closeNavigation();
     else menuToggle.setAttribute("aria-expanded", "true");
   });
-  document.addEventListener("click", (event) => {
-    if (
-      isOpen() &&
-      (!header.contains(event.target) || event.target.closest("a"))
-    )
-      closeNavigation();
+  document.addEventListener("click", event => {
+    if (isOpen() && (!header.contains(event.target) || event.target.closest("a"))) closeNavigation();
   });
-  header.addEventListener("keydown", (event) => {
+  header.addEventListener("keydown", event => {
     if (event.key === "Escape" && isOpen()) {
       closeNavigation();
       menuToggle.focus();
     }
   });
-  window
-    .matchMedia("(max-width:960px)")
-    .addEventListener("change", closeNavigation);
+  window.matchMedia("(max-width:960px)").addEventListener("change", closeNavigation);
   window.addEventListener("pageshow", closeNavigation);
   header.classList.add("menu-ready");
+}
+
+const journey = document.querySelector(".journey");
+if (journey) {
+  journey.addEventListener("click", event => {
+    const link = event.target.closest("a");
+    if (!link) return;
+    const region = document.getElementById(link.hash.slice(1));
+    if (region) region.open = true;
+  });
 }
